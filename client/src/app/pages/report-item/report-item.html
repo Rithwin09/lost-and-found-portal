@@ -1,0 +1,111 @@
+<div class="report-container">
+  <div class="card report-card">
+    <div class="card-header">
+      <h3 class="text-center">Report a Lost or Found Item</h3>
+    </div>
+    <div class="card-body">
+      <form #reportForm="ngForm" (ngSubmit)="onSubmit()">
+        
+        <div *ngIf="!isLoggedIn" class="mb-3">
+          <label for="guest_email" class="form-label">Your Email Address <span class="text-danger">*</span></label>
+          <input type="email" class="form-control" id="guest_email" name="guest_email" [(ngModel)]="form.guest_email" placeholder="We'll send a verification link here" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">What are you reporting? <span class="text-danger">*</span></label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="status" id="foundRadio" value="found" [(ngModel)]="form.status" required>
+            <label class="form-check-label" for="foundRadio">I Found an Item</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="status" id="lostRadio" value="lost" [(ngModel)]="form.status" required [disabled]="!isLoggedIn">
+            <label class="form-check-label" for="lostRadio">I Lost an Item</label>
+          </div>
+        </div>
+        
+        <div class="mb-3">
+          <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="title" name="title" [(ngModel)]="form.title" placeholder="e.g., Black Nike Backpack" required>
+        </div>
+        
+        <div class="mb-3">
+          <label for="category" class="form-label">Category <span class="text-danger">*</span></label>
+          <select class="form-select" id="category" name="category" [(ngModel)]="form.category" required>
+            <option selected disabled value="">Choose...</option>
+            <option value="Electronics">Electronics</option>
+            <option value="ID Cards">ID Cards & Campus Cards</option>
+            <option value="Wallets & Purses">Wallets & Purses</option>
+            <option value="Keys">Keys</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Bags & Backpacks">Bags & Backpacks</option>
+            <option value="Books & Notes">Books & Notes</option>
+            <option value="Jewelry">Jewelry</option>
+            <option value="Accessories">Accessories</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        
+        <div class="mb-3" *ngIf="form.category === 'Other'">
+          <label for="otherCategory" class="form-label">Please specify the category <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="otherCategory" name="otherCategory" [(ngModel)]="form.otherCategory" placeholder="e.g., Health products, Water bottles" [required]="form.category === 'Other'">
+        </div>
+        
+        <div class="mb-3">
+          <label for="color" class="form-label">Color <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="color" name="color" [(ngModel)]="form.color" placeholder="e.g., Black, Blue with stripes" required>
+        </div>
+        
+        <div class="mb-3">
+          <label for="brand" class="form-label">Brand</label>
+          <input type="text" class="form-control" id="brand" name="brand" [(ngModel)]="form.brand" placeholder="e.g., Apple, Nike (if known)">
+        </div>
+
+        <div class="mb-3">
+          <label for="unique_marks" class="form-label">Unique Marks</label>
+          <input type="text" class="form-control" id="unique_marks" name="unique_marks" [(ngModel)]="form.unique_marks" placeholder="e.g., small scratch on corner, sticker on back">
+        </div>
+
+        <div class="mb-3">
+          <label for="item_size" class="form-label">Size</label>
+          <input type="text" class="form-control" id="item_size" name="item_size" [(ngModel)]="form.item_size" placeholder="e.g., Medium, Large, 1L">
+        </div>
+
+        <div class="mb-3">
+          <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
+          <textarea class="form-control" id="description" name="description" [(ngModel)]="form.description" rows="3" placeholder="Provide as much detail as possible." required></textarea>
+        </div>
+
+        <!-- Image Upload Section -->
+        <div class="mb-3">
+          <label class="form-label">Photo</label>
+          <div class="alert alert-info small">For found items, a photo is mandatory.</div>
+          
+          <div *ngIf="isCameraOpen" class="mb-3 text-center">
+            <video autoplay playsinline class="w-100 border rounded"></video>
+            <button type="button" class="btn btn-success mt-2" (click)="captureImage()">Take Picture</button>
+            <button type="button" class="btn btn-secondary mt-2 ms-2" (click)="stopCamera()">Cancel</button>
+          </div>
+
+          <div *ngIf="!isCameraOpen">
+            <button type="button" class="btn btn-secondary me-2" (click)="fileInput.click()">Upload Photo</button>
+            <button type="button" class="btn btn-secondary" (click)="startCamera()">Capture with Camera</button>
+            <input type="file" class="d-none" id="imageUpload" #fileInput (change)="onFileSelected($event)" accept="image/*">
+            
+            <div *ngIf="selectedFile" class="mt-2 d-flex align-items-center">
+              <strong>Selected file:</strong>
+              <span class="ms-2">{{ selectedFile.name }}</span>
+              <button type="button" class="btn-close ms-2" (click)="removeSelectedFile()" aria-label="Remove"></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-grid mt-4">
+          <button type="submit" class="btn btn-primary" 
+                  [disabled]="!reportForm.form.valid || (form.status === 'found' && !selectedFile)">
+            Submit Report
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

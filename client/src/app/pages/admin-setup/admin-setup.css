@@ -1,0 +1,101 @@
+/* --- Main Container Styling --- */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: var(--light-background);
+}
+
+/* --- Main Card Styling --- */
+.card {
+  width: 100%;
+  max-width: 750px;
+  animation: fadeIn 0.5s ease-in-out;
+  background-color: var(--light-background);
+  border: 1px solid var(--secondary-color);
+  box-shadow: 0 10px 30px rgba(41, 50, 65, 0.1);
+}
+
+.card-header {
+  background-color: var(--primary-color);
+  color: var(--light-background);
+  border-bottom: none;
+  padding: 1.5rem;
+}
+
+.card-header h3 {
+  color: var(--light-background);
+}
+
+.card-body {
+  padding: 2.5rem;
+}
+
+/* --- Form Styling --- */
+.form-label {
+  font-weight: 500;
+  color: var(--dark-text);
+}
+
+.form-control {
+  width: 100%; /* ✅ THIS IS THE FIX ✅ */
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.25rem rgba(61, 90, 128, 0.25);
+}
+
+/* The main "Set Password" button */
+.btn-primary {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary:hover {
+  background-color: var(--dark-text) !important;
+  border-color: var(--dark-text) !important;
+}
+
+/* --- Fade-in Animation --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Password Strength Meter Styling --- */
+.password-rules {
+  font-size: 0.9rem;
+  padding-left: 5px;
+  margin-top: -10px; /* Adjust to bring it closer to the input box */
+}
+
+/* Default style for each rule (invalid) */
+.password-rules div {
+  color: #dc3545; /* A standard red color for errors */
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease-in-out;
+}
+
+.password-rules div i {
+  margin-right: 8px;
+  font-size: 1rem;
+}
+
+/* The style for a rule when it becomes valid */
+.password-rules div.valid {
+  color: #198754; /* A standard green color for success */
+  font-weight: 500;
+}

@@ -1,0 +1,73 @@
+<div class="register-container">
+  <div class="card register-card">
+    <div class="card-header">
+      <h3 class="text-center">Create an Account</h3>
+    </div>
+    <div class="card-body">
+      <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
+        <!-- Full Name and Email Fields are unchanged -->
+        <div class="mb-3">
+          <label for="name" class="form-label">Full Name <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="name" name="name" [(ngModel)]="form.name" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">College Email <span class="text-danger">*</span></label>
+          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="form.email" required>
+        </div>
+
+        <!-- Phone Number Field with new validation -->
+        <div class="mb-3">
+          <label for="phoneNumber" class="form-label">Phone Number <span class="text-danger">*</span></label>
+          <!-- THIS IS THE CRITICAL CHANGE -->
+          <!-- We add the 'pattern' validator and a template reference variable '#phone="ngModel"' -->
+          <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" 
+                 [(ngModel)]="form.phoneNumber" required
+                 pattern="[0-9]*"
+                 #phone="ngModel">
+          
+          <!-- THIS IS THE NEW, SMART ERROR MESSAGE -->
+          <!-- It only appears if the field is invalid AND the user has touched it -->
+          <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="validation-error">
+            Phone number can only contain digits.
+          </div>
+        </div>
+
+        <!-- Password Fields and validation are unchanged and correct -->
+        <div class="mb-3">
+          <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+          <input type="password" class="form-control" id="password" name="password" 
+                 [(ngModel)]="form.password" required
+                 (input)="validatePassword($any($event.target).value)"
+                 (focus)="isPasswordFocused = true">
+        </div>
+        <div *ngIf="isPasswordFocused" class="password-rules-container">
+          <div class="password-rules mb-3">
+            <div [ngClass]="{'valid': passwordValidation.minLength}">
+              <i class="bi" [ngClass]="passwordValidation.minLength ? 'bi-check-circle-fill' : 'bi-x-circle'"></i>
+              At least 8 characters
+            </div>
+            <div [ngClass]="{'valid': passwordValidation.hasUpper}">
+              <i class="bi" [ngClass]="passwordValidation.hasUpper ? 'bi-check-circle-fill' : 'bi-x-circle'"></i>
+              At least one uppercase letter
+            </div>
+            <div [ngClass]="{'valid': passwordValidation.hasSpecial}">
+              <i class="bi" [ngClass]="passwordValidation.hasSpecial ? 'bi-check-circle-fill' : 'bi-x-circle'"></i>
+              At least one special character (!@#$%)
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label">Confirm Password <span class="text-danger">*</span></label>
+          <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" [(ngModel)]="form.confirmPassword" required>
+        </div>
+
+        <div class="d-grid mt-4">
+          <button type="submit" class="btn btn-primary" 
+                  [disabled]="!registerForm.form.valid || !passwordValidation.minLength || !passwordValidation.hasUpper || !passwordValidation.hasSpecial">
+            Create My Account
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

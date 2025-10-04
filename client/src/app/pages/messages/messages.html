@@ -1,0 +1,60 @@
+<div class="container mt-5">
+  <div *ngIf="isLoading" class="text-center">
+    <p>Loading chat...</p>
+  </div>
+
+  <div *ngIf="!isLoading && canAccessChat">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h4 *ngIf="item">Conversation for: {{ item.title }}</h4>
+            <div>
+              <ng-container *ngIf="showResolvedButton && !isChatFrozen">
+                <button class="btn btn-success btn-sm me-2" (click)="markAsResolved()">Mark as Resolved</button>
+              </ng-container>
+              <ng-container *ngIf="!isChatFrozen">
+                <button class="btn btn-outline-danger btn-sm" (click)="reportUser()">
+                  <i class="bi bi-flag-fill"></i> Report User
+                </button>
+              </ng-container>
+            </div>
+          </div>
+
+          <div *ngIf="isChatFrozen" class="alert alert-warning m-3 text-center">
+            <strong>This conversation is under review.</strong><br>
+            A report has been filed. This chat is now read-only.
+          </div>
+
+          <div class="card-body chat-box">
+            <!-- THIS IS THE NEW, SIMPLER MESSAGE STRUCTURE -->
+            <!-- The button is now INSIDE the message bubble -->
+            <div *ngFor="let msg of messages" 
+                 class="message" 
+                 [ngClass]="{'outgoing': msg.senderId === loggedInUserId, 'incoming': msg.senderId !== loggedInUserId}">
+              
+              <p class="message-body">{{ msg.body }}</p>
+              
+              <!-- This delete button only appears on outgoing messages -->
+              <button *ngIf="msg.senderId === loggedInUserId && !isChatFrozen" class="btn btn-delete" (click)="deleteMessage(msg.id)" title="Delete Message">
+                &times;
+              </button>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <form class="d-flex" (ngSubmit)="sendMessage()" #chatForm="ngForm">
+              <input type="text" class="form-control me-2" placeholder="Type your message..." 
+                     [(ngModel)]="newMessage" name="newMessage" [disabled]="isChatFrozen">
+              <button type="submit" class="btn btn-primary" [disabled]="isChatFrozen || !chatForm.form.valid || !newMessage.trim()">Send</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading && !canAccessChat" class="alert alert-danger text-center">
+    <h4>Access Denied</h4>
+  </div>
+</div>

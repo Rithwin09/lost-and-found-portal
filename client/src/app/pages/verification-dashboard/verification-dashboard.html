@@ -1,0 +1,33 @@
+<div class="container mt-5">
+  <div *ngIf="isLoading" class="text-center">
+    <p>Loading claims...</p>
+  </div>
+
+  <div *ngIf="!isLoading">
+    <h2 class="text-center mb-4">Review Claims for: "{{ item?.title }}"</h2>
+
+    <div *ngIf="claims.length > 0; else noClaims">
+      <div *ngFor="let claim of claims" class="card mb-3">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <strong>Claim #{{ claim.id }}</strong>
+          <span class="badge" [ngClass]="{'bg-warning text-dark': claim.status === 'pending', 'bg-success': claim.status === 'accepted', 'bg-danger': claim.status === 'rejected'}">
+            {{ claim.status | uppercase }}
+          </span>
+        </div>
+        <div class="card-body">
+          <p><strong>Claimant's Proof of Ownership:</strong></p>
+          <p class="bg-light p-2 rounded">{{ claim.proof_description }}</p>
+        </div>
+        <div *ngIf="claim.status === 'pending'" class="card-footer text-end">
+          <button class="btn btn-success me-2" (click)="acceptClaim(claim.id)">Accept Claim</button>
+          <button class="btn btn-danger" (click)="rejectClaim(claim.id)">Reject Claim</button>
+        </div>
+      </div>
+    </div>
+    <ng-template #noClaims>
+      <div class="alert alert-info text-center">
+        There are currently no claims for this item.
+      </div>
+    </ng-template>
+  </div>
+</div>

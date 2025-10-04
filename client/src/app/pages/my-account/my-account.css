@@ -1,0 +1,86 @@
+/* --- Main Container & Title Styling --- */
+.container {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+h1 {
+  font-weight: 700;
+  margin-bottom: 3rem !important;
+}
+
+/* --- Dashboard Card Styling --- */
+.card {
+  background-color: #ffffff; /* Use white for the card background to pop against the page */
+}
+
+.card-header {
+  background-color: var(--primary-color);
+  color: var(--light-background);
+  padding: 1rem 1.5rem;
+}
+
+.card-header h3 {
+  color: var(--light-background);
+  font-size: 1.25rem;
+  margin-bottom: 0;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+/* --- Table Styling --- */
+.table {
+  vertical-align: middle; /* Center content vertically in cells */
+}
+
+.table thead th {
+  color: var(--dark-text);
+  font-weight: 600;
+  border-bottom-width: 2px;
+  border-color: var(--border-color);
+}
+
+.table td, .table th {
+  padding: 1rem; /* More spacious cells */
+}
+
+/* --- Action Button Styling --- */
+/* We need to be specific to override global styles if necessary */
+.btn-warning {
+  background-color: var(--warning-color) !important;
+  color: var(--dark-text) !important;
+  border: none;
+}
+
+.btn-danger {
+  background-color: var(--danger-color) !important;
+  border: none;
+}
+
+/* --- Empty State Styling --- */
+.empty-state {
+  padding: 3rem;
+  text-align: center;
+  color: var(--secondary-color);
+}
+
+.empty-state i {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+/* --- Fade-in Animation --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

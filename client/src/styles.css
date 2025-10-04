@@ -1,0 +1,98 @@
+/* --- Google Font Imports (Unchanged and correct) --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500&display=swap');
+
+/* --- CSS Variables (YOUR NEW, PROFESSIONAL DESIGN SYSTEM) --- */
+:root {
+  /* Your brilliant new color palette */
+  --primary-color: #3d5a80;   /* Steel Blue */
+  --secondary-color: #98c1d9; /* Powder Blue */
+  --accent-color: #ee6c4d;    /* Burnt Coral */
+  --light-background: #e0fbfc; /* Pale Cyan */
+  --dark-text: #293241;      /* Charcoal Blue */
+
+  /* Standard Supporting Colors */
+  --success-color: #198754;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --border-color: #dee2e6;
+  --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --card-hover-shadow: 0 12px 32px rgba(41, 50, 65, 0.15); /* Shadow now uses our dark text color */
+  --border-radius: 12px;
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* --- Global Body & Typography Styles --- */
+body {
+  background-color: var(--light-background);
+  font-family: var(--font-body);
+  color: var(--dark-text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--primary-color);
+
+}
+
+/* --- Global Component Styles --- */
+.card {
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  background-color: #ffffff;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--card-hover-shadow);
+}
+
+/* --- NEW, UPGRADED BUTTON STYLES --- */
+.btn {
+  font-family: var(--font-body);
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+  border: none;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* The standard "primary" button is now your Steel Blue */
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+.btn-primary:hover {
+  background-color: #293241; /* Hover becomes the darker Charcoal Blue */
+  color: white;
+}
+
+/* A new, special class for our most important "call-to-action" buttons */
+.btn-accent {
+  background-color: var(--accent-color);
+  color: white;
+  font-weight: 600;
+}
+.btn-accent:hover {
+  background-color: #d95a36; /* A darker shade of the Coral */
+  color: white;
+}
+

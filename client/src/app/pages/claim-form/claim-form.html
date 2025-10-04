@@ -1,0 +1,25 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="text-center">Claim Item</h3>
+        </div>
+        <div class="card-body">
+          <div class="alert alert-info">
+            To prove this item is yours, please provide a specific, non-public detail in the box below. Your answer will be sent to the finder for review.
+          </div>
+          <form #claimForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="proof" class="form-label">Proof of Ownership <span class="text-danger">*</span></label>
+              <textarea class="form-control" id="proof" name="proof" rows="4" [(ngModel)]="proof_description" placeholder="Examples: a serial number, a specific scratch or sticker, the photo on the lock screen..." required></textarea>
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary" [disabled]="!claimForm.form.valid">Submit Claim</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

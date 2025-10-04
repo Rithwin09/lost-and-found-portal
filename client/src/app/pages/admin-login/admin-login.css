@@ -1,0 +1,77 @@
+/* This container centers the login card on the page */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Make it take the full height of the screen */
+  padding: 2rem;
+  background-color: var(--light-background); /* Your Pale Cyan background */
+}
+
+/* The main card, using your colors */
+.login-card {
+  width: 100%;
+  max-width: 450px;
+  animation: fadeIn 0.5s ease-in-out;
+  background-color: var(--light-background); /* Pale Cyan, as requested */
+  border: 1px solid var(--primary-color); /* Steel Blue border */
+  box-shadow: 0 10px 30px rgba(41, 50, 65, 0.1); /* Your Charcoal for the shadow */
+}
+
+/* The header uses your dark Charcoal Blue for a serious, admin feel */
+.card-header {
+  background-color: var(--dark-text);
+  color: var(--light-background); /* Text and icon are Pale Cyan for contrast */
+  border-bottom: none;
+  padding: 1.5rem;
+}
+
+/* We must be specific to override the global h3 color */
+.card-header h3 {
+  color: var(--light-background);
+}
+
+.card-body {
+  padding: 2.5rem;
+}
+
+/* Styling for the form elements */
+.form-label {
+  font-weight: 500;
+  color: var(--dark-text);
+}
+
+.form-control {
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.25rem rgba(61, 90, 128, 0.25); /* Steel Blue glow */
+}
+
+/* This targets the main login button to use your Primary Color */
+.btn-primary {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary:hover {
+  background-color: var(--dark-text) !important; /* A darker shade */
+  border-color: var(--dark-text) !important;
+}
+
+/* The subtle fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

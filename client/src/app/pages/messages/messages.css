@@ -1,0 +1,66 @@
+.chat-box {
+  height: 60vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+/* --- COMPACT, CLEAN CHAT BUBBLES --- */
+.message {
+  position: relative;           /* needed for absolute delete button */
+  padding: 0.4rem 0.8rem;
+  border-radius: 1rem;
+  margin-bottom: 0.4rem;
+  max-width: 70%;
+  display: inline-block;        /* shrink bubble to fit text */
+  width: fit-content;           /* ensures no extra empty space */
+  word-break: break-word;
+}
+
+.message-body {
+  margin: 0;
+  white-space: pre-wrap;        /* allow wrapping */
+  word-break: break-word;       /* break long words */
+}
+
+.incoming {
+  background-color: #e9ecef;
+  color: #212529;
+  border-bottom-left-radius: 0.25rem;
+  align-self: flex-start;
+}
+
+.outgoing {
+  background-color: var(--primary-color);
+  color: white;
+  border-bottom-right-radius: 0.25rem;
+  align-self: flex-end;
+}
+
+/* --- DELETE BUTTON --- */
+.btn-delete {
+  position: absolute;
+  top: -6px;        /* snug to the corner */
+  right: -6px;
+  background: transparent;  /* no shadow, no background */
+  border: none;
+  color: white;     /* or black if you want for contrast */
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 0;       /* hidden by default */
+  transition: opacity 0.2s ease-in-out;
+  line-height: 1;
+  padding: 0;
+}
+
+/* Show delete only on hover */
+.outgoing:hover .btn-delete {
+  opacity: 1;
+}
+
+
+.btn-delete:hover {
+  background: rgba(0,0,0,0.3);
+}

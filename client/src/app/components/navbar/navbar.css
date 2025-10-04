@@ -1,0 +1,81 @@
+/* --- Main Navbar Styling --- */
+/* We override Bootstrap's default to use our new brand colors */
+.navbar {
+  background-color: var(--primary-color) !important; /* Your Steel Blue */
+  padding-top: 0.5rem; /* Reduced padding for a normal size */
+  padding-bottom: 0.5rem;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+/* The brand/logo uses your primary color */
+.navbar-brand {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #ffffff !important; /* Changed to white for contrast */
+}
+
+/* --- Navigation Links Styling --- */
+.nav-link {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8) !important; /* Light color for readability */
+  margin: 0 0.5rem;
+  padding-bottom: 0.5rem;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+/* This creates the modern underline effect for the active link */
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0.5rem;
+  right: 0.5rem;
+  height: 3px;
+  background-color: var(--secondary-color); /* Powder Blue for a softer accent */
+  border-radius: 2px;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: #ffffff !important; /* Full white on hover/active */
+}
+
+/* --- Button Styling --- */
+
+/* The main "Report an Item" button now has a different style to stand out */
+.btn-primary {
+  background-color: var(--accent-color) !important; /* Keep the vibrant Coral for the main action */
+  border-color: var(--accent-color) !important;
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background-color: #d95a36 !important; /* A darker shade of the Coral */
+  border-color: #d95a36 !important;
+}
+
+/* Make the logout button look like a clean link */
+.btn-link.nav-link {
+  text-decoration: none;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+/* --- Hamburger Menu Icon Styling --- */
+.navbar-toggler {
+  border: 1px solid rgba(255, 255, 255, 0.2); /* A subtle border for the button */
+}
+
+/* This filter makes the hamburger icon white */
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+}
+

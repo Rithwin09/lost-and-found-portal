@@ -1,0 +1,96 @@
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Recent Listings</h1>
+
+  <!-- Search and Filter Section -->
+  <form (ngSubmit)="getItems()">
+    <div class="row mb-4 align-items-end">
+      <!-- Search Bar -->
+      <div class="col-md-5">
+        <label class="form-label">Search by title</label>
+        <input type="text" class="form-control" [(ngModel)]="filters.search" name="search">
+      </div>
+      <!-- Category Filter -->
+      <div class="col-md-3">
+        <label class="form-label">Category</label>
+        <select class="form-select" [(ngModel)]="filters.category" name="category">
+          <option value="">All Categories</option>
+          <option value="Electronics">Electronics</option>
+          <option value="ID Cards">ID Cards & Campus Cards</option>
+          <option value="Wallets & Purses">Wallets & Purses</option>
+          <option value="Keys">Keys</option>
+          <option value="Clothing">Clothing</option>
+          <option value="Bags & Backpacks">Bags & Backpacks</option>
+          <option value="Books & Notes">Books & Notes</option>
+          <option value="Jewelry">Jewelry</option>
+          <option value="Accessories">Accessories</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <!-- Status Filter -->
+      <div class="col-md-2">
+        <label class="form-label">Status</label>
+        <select class="form-select" [(ngModel)]="filters.status" name="status">
+          <option value="">All</option>
+          <option value="found">Found</option>
+          <option value="lost">Lost</option>
+        </select>
+      </div>
+      <!-- Search Button -->
+      <div class="col-md-2 d-grid">
+        <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="row">
+    <div *ngIf="items.length === 0" class="col-12 text-center">
+      <p class="text-muted">No items found matching your criteria.</p>
+    </div>
+
+    <div class="col-md-3 mb-4" *ngFor="let item of items">
+      <div class="card h-100">
+        <div class="card-header text-white" 
+             [ngClass]="{
+               'bg-success': item.status === 'found', 
+               'bg-danger': item.status === 'lost'
+             }">
+          {{ item.status.toUpperCase() }}
+        </div>
+
+        <!-- THIS IS THE ONLY LINE THAT CHANGES -->
+        <img [src]="'http://localhost:8080/' + item.image_url" 
+             class="card-img-top item-card-img" 
+             alt="{{ item.title }}"
+             onerror="this.src='https://placehold.co/600x400?text=No+Image+Provided'">
+        
+        <div class="card-body">
+          <h5 class="card-title">{{ item.title }}</h5>
+          <p class="card-text text-truncate">{{ item.description }}</p>
+        </div>
+        
+        <div class="card-footer">
+          <a [routerLink]="['/item', item.id]" class="btn btn-primary">View Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div class="row" *ngIf="totalPages > 1">
+    <div class="col-12">
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          <li class="page-item" [class.disabled]="currentPage === 0">
+            <a class="page-link" href="#" (click)="onPageChange(currentPage - 1)">Previous</a>
+          </li>
+          <li class="page-item" *ngFor="let page of getPagesArray()" [class.active]="page === currentPage">
+            <a class="page-link" href="#" (click)="onPageChange(page)">{{ page + 1 }}</a>
+          </li>
+          <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
+            <a class="page-link" href="#" (click)="onPageChange(currentPage + 1)">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

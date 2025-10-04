@@ -1,0 +1,108 @@
+/* This container centers the login card on the page */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Make it take the full height of the screen */
+  padding: 2rem;
+  background-color: var(--light-background); /* Your Pale Cyan background */
+}
+
+/* The main card, using your colors */
+.login-card {
+  width: 100%;
+  max-width: 450px;
+  animation: fadeIn 0.5s ease-in-out;
+  background-color: var(--light-background); /* Pale Cyan, as requested */
+  border: 1px solid var(--secondary-color); /* Powder Blue border */
+  box-shadow: 0 10px 30px rgba(41, 50, 65, 0.1); /* Your Charcoal for the shadow */
+}
+
+/* The header uses your primary Steel Blue */
+.card-header {
+  background-color: var(--primary-color);
+  color: var(--light-background); /* Text and icon are Pale Cyan for contrast */
+  border-bottom: none;
+  padding: 1.5rem;
+}
+
+/* We must be specific to override the global h3 color */
+.card-header h3 {
+  color: var(--light-background);
+}
+
+.card-body {
+  padding: 2.5rem;
+}
+
+/* --- THIS IS THE NEW, SMARTER STYLING --- */
+
+/* Add a transition and rounded corners to the entire group */
+.input-group {
+  border-radius: 8px;
+  transition: box-shadow 0.2s ease-in-out;
+  border: 1px solid var(--border-color);
+  overflow: hidden; /* This is key to making the corners look right */
+}
+
+/* When any element inside the group is focused, apply the glow to the parent */
+.input-group:focus-within {
+  box-shadow: 0 0 0 0.25rem rgba(61, 90, 128, 0.25); /* Steel Blue glow */
+  border-color: var(--primary-color);
+}
+
+/* Styling for the icons in the input fields */
+.input-group-text {
+  background-color: #ffffff;
+  border: none; /* The parent .input-group now handles the border */
+  color: var(--secondary-color);
+}
+
+.form-control {
+  padding: 0.8rem 1rem;
+  border: none; /* The parent .input-group now handles the border */
+}
+
+/* Remove the default focus glow from the input itself, as the parent handles it */
+.form-control:focus {
+  box-shadow: none;
+}
+/* ------------------------------------------- */
+
+
+/* This targets the main login button to use your Accent Color */
+.btn-primary {
+  background-color: var(--accent-color) !important;
+  border-color: var(--accent-color) !important;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 0.8rem;
+}
+
+.btn-primary:hover {
+  background-color: #d95a36 !important; /* A darker shade of the Coral */
+  border-color: #d95a36 !important;
+}
+
+/* Styling for the helper links */
+.form-text, .card-body a {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.card-body a:hover {
+  color: var(--dark-text);
+}
+
+/* The subtle fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

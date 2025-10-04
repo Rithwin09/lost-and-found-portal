@@ -1,0 +1,103 @@
+/* --- Main Container & Header Styling --- */
+.container {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+h1 {
+  font-weight: 700;
+}
+
+/* --- Main Card Styling --- */
+.card {
+  background-color: #ffffff;
+  border: none;
+}
+
+.card-header {
+  background-color: transparent;
+  border-bottom: 1px solid var(--border-color);
+  padding: 1.5rem;
+}
+
+.card-header h3 {
+  color: var(--dark-text);
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+/* --- Search Bar Styling --- */
+.input-group .form-control {
+  border-radius: 8px 0 0 8px;
+}
+.input-group .btn {
+  border-radius: 0 8px 8px 0;
+}
+
+/* --- Table Styling --- */
+.table {
+  vertical-align: middle;
+}
+
+.table thead th {
+  background-color: var(--light-background);
+  color: var(--dark-text);
+  font-weight: 600;
+  border-bottom-width: 2px;
+  border-top: none;
+}
+
+.table tbody tr:hover {
+  background-color: rgba(61, 90, 128, 0.05); /* Subtle Steel Blue on hover */
+}
+
+/* --- Action Button Styling --- */
+.btn-success {
+  background-color: var(--success-color) !important;
+  border: none;
+}
+.btn-warning {
+  background-color: var(--warning-color) !important;
+  color: var(--dark-text) !important;
+  border: none;
+}
+.btn-danger {
+  background-color: var(--danger-color) !important;
+  border: none;
+}
+
+/* --- Pagination Styling --- */
+.pagination .page-link {
+  border-radius: 50px !important;
+  margin: 0 5px;
+  border: none;
+  font-weight: 500;
+  color: var(--secondary-color);
+  background-color: #e9ecef;
+}
+.pagination .page-item.active .page-link {
+  background-color: var(--primary-color);
+  color: white;
+  box-shadow: 0 2px 5px rgba(61, 90, 128, 0.3);
+}
+.pagination .page-item.disabled .page-link {
+  background-color: #f8f9fa;
+  color: #adb5bd;
+}
+
+/* --- Fade-in Animation --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

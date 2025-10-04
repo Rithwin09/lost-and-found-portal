@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="#" (click)="$event.preventDefault(); navigateAndClose('/admin')">Admin Portal</a>
+    
+    <!-- CHANGED: removed data-bs-toggle/data-bs-target, added (click)="toggleMenu()" -->
+    <button class="navbar-toggler" type="button" (click)="toggleMenu()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="adminNavbarNav" #adminNavbarNav>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#" (click)="$event.preventDefault(); navigateAndClose('/admin')">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" (click)="$event.preventDefault(); navigateAndClose('/admin/users')">Manage Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" (click)="$event.preventDefault(); navigateAndClose('/admin/items')">Manage Items</a>
+        </li>
+        <li *ngIf="isSuperAdmin" class="nav-item">
+          <a class="nav-link" href="#" (click)="$event.preventDefault(); navigateAndClose('/admin/admins')">Manage Admins</a>
+        </li>
+      </ul>
+      <div class="d-flex align-items-center">
+        <span class="navbar-text me-3">
+          Welcome, {{ adminName }}
+        </span>
+        <button class="btn btn-outline-light" (click)="logout()">Logout</button>
+      </div>
+    </div>
+  </div>
+</nav>

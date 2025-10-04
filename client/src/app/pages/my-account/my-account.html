@@ -1,0 +1,96 @@
+<div class="container mt-5">
+  <h1 class="text-center mb-4">My Account Dashboard</h1>
+
+  <!-- My Reported Items Section -->
+  <div class="card mb-5">
+    <div class="card-header">
+      <h3>My Reported Items</h3>
+    </div>
+    <div class="card-body">
+      <div *ngIf="reportedItems.length > 0; else noReportedItems" class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of reportedItems" [class.table-secondary]="item.is_admin_deleted">
+              <td>
+                {{ item.title }}
+                <!-- THIS IS THE NEW "DELETED BY ADMIN" MESSAGE -->
+                <span *ngIf="item.is_admin_deleted" class="badge bg-danger ms-2">Removed by Admin</span>
+              </td>
+              <td>
+                <span class="badge" [ngClass]="{
+                  'bg-danger': item.status === 'lost', 
+                  'bg-success': item.status === 'found', 
+                  'bg-secondary': item.status === 'resolved'
+                }">
+                  {{ item.status | uppercase }}
+                </span>
+              </td>
+              <td>
+                <!-- These are the new, smart action buttons -->
+                <!-- They are now disabled if the item has been deleted by an admin -->
+                <a [routerLink]="['/item', item.id]" class="btn btn-info btn-sm me-2" [class.disabled]="item.is_admin_deleted">View Details</a>
+                <a *ngIf="item.status === 'found' && loggedInUserId === item.userId" 
+                   [routerLink]="['/item', item.id, 'verify']" 
+                   class="btn btn-warning btn-sm me-2"
+                   [class.disabled]="item.is_admin_deleted">Review Claims</a>
+                <button class="btn btn-danger btn-sm" 
+                        (click)="deleteItem(item.id)" 
+                        [disabled]="item.is_admin_deleted">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ng-template #noReportedItems>
+        <p>You have not reported any items yet.</p>
+      </ng-template>
+    </div>
+  </div>
+
+
+  <!-- My Conversations Section -->
+  <div class="card">
+    <div class="card-header">
+      <h3>My Conversations</h3>
+    </div>
+    <div class="card-body">
+      <div *ngIf="conversations.length > 0; else noConversations" class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Item Title</th>
+              <th>Your Role</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let convo of conversations">
+              <td *ngIf="convo.item">{{ convo.item.title }}</td>
+              <td *ngIf="!convo.item" class="text-muted"><em>(This item has been deleted)</em></td>
+              <td>
+                <span class="badge" [ngClass]="{'bg-primary': convo.role === 'Finder', 'bg-info': convo.role === 'Claimant'}">
+                  {{ convo.role }}
+                </span>
+              </td>
+              <td>
+                <a *ngIf="convo.item" [routerLink]="['/messages', convo.item.id]" class="btn btn-primary btn-sm">Open Chat</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ng-template #noConversations>
+        <p>You have no active conversations.</p>
+      </ng-template>
+    </div>
+  </div>
+</div>

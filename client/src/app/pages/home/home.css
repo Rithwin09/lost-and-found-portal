@@ -1,0 +1,69 @@
+/* 🔹 Card Styling */
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+/* 🔹 Fixed Image Box */
+.item-card-img {
+  height: 180px;          /* fixed box height */
+  object-fit: cover;    /* show full photo inside box */
+  background-color: #f8f9fa; /* add neutral background for empty space */
+  border-bottom: 1px solid #e9ecef;
+   
+}
+
+/* 🔹 Card Body (description area) */
+.card-body {
+  flex-grow: 1;          /* pushes footer down */
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Limit description to 2 lines for neatness */
+.card-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;   /* Chrome / Safari */
+  line-clamp: 2;           /* Standard property */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* 🔹 Footer stays aligned */
+.card-footer {
+  background-color: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+  text-align: center;
+}
+
+.card-footer .btn {
+  width: 100%;
+  font-weight: 500;
+}
+
+/* 🔹 Status Headers */
+.card-header.bg-success {
+  background-color: #28a745 !important;
+}
+
+.card-header.bg-danger {
+  background-color: #dc3545 !important;
+}

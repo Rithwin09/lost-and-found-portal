@@ -1,0 +1,60 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-md-8">
+
+      <!-- This card shows if the link is valid -->
+      <div *ngIf="isValidToken" class="card">
+        <div class="card-header">
+          <h3 class="text-center">Complete Your Administrator Account Setup</h3>
+        </div>
+        <div class="card-body">
+          <p class="text-muted text-center">Create a secure, private password for your new administrator account.</p>
+          <form #setupForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="password" class="form-label">New Password</label>
+              <input type="password" class="form-control" id="password" name="password" 
+                     [(ngModel)]="form.password" required
+                     (input)="validatePassword($any($event.target).value)">
+            </div>
+
+            <!-- THE NEW PASSWORD STRENGTH METER UI -->
+            <div class="password-rules mb-3">
+              <div [ngClass]="{'valid': passwordValidation.minLength}">
+                <i class="bi" [ngClass]="passwordValidation.minLength ? 'bi-check-circle-fill' : 'bi-x-circle'"></i>
+                At least 8 characters
+              </div>
+              <div [ngClass]="{'valid': passwordValidation.hasUpper}">
+                <i class="bi" [ngClass]="passwordValidation.hasUpper ? 'bi-check-circle-fill' : 'bi-x-circle'"></i>
+                At least one uppercase letter
+              </div>
+              <div [ngClass]="{'valid': passwordValidation.hasSpecial}">
+                <i class="bi" [ngClass]="passwordValidation.hasSpecial ? 'bi-check-circle-fill' : 'bi-x-circle'"></i>
+                At least one special character (!@#$%)
+              </div>
+            </div>
+            <!-- --------------------------------- -->
+
+            <div class="mb-3">
+              <label for="confirmPassword" class="form-label">Confirm New Password</label>
+              <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" [(ngModel)]="form.confirmPassword" required>
+            </div>
+            <div class="d-grid">
+              <!-- The submit button is now smarter and is only enabled when the password is valid -->
+              <button type="submit" class="btn btn-primary" 
+                      [disabled]="!setupForm.form.valid || !passwordValidation.minLength || !passwordValidation.hasUpper || !passwordValidation.hasSpecial">
+                Set Password & Activate Account
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- This card shows if the link is broken or missing a token (Unchanged) -->
+      <div *ngIf="!isValidToken" class="alert alert-danger text-center">
+        <h4>Invalid Link</h4>
+        <p>The account setup link you used is invalid or has expired. Please contact a super administrator.</p>
+      </div>
+
+    </div>
+  </div>
+</div>

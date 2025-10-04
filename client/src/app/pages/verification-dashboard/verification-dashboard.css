@@ -1,0 +1,78 @@
+/* --- Main Container & Header Styling --- */
+.container {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+h2 {
+  font-weight: 700;
+  color: var(--dark-text); /* Use dark text for better contrast on the light background */
+}
+
+/* --- Claim Card Styling --- */
+.card {
+  background-color: #ffffff; /* Use white for the card to make it pop */
+  border: 1px solid var(--border-color);
+  margin-bottom: 1.5rem;
+}
+
+.card-header {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.card-header strong {
+  font-size: 1.1rem;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+/* Style for the proof description block */
+.card-body p.bg-light {
+  background-color: var(--light-background) !important;
+  border: 1px solid var(--border-color);
+  padding: 1rem !important;
+  border-radius: 8px;
+}
+
+.card-footer {
+  background-color: #ffffff;
+  border-top: 1px solid var(--border-color);
+  padding: 1rem 1.5rem;
+}
+
+/* --- Button Styling --- */
+.btn-success {
+  background-color: var(--success-color) !important;
+  border: none;
+}
+
+.btn-danger {
+  background-color: var(--danger-color) !important;
+  border: none;
+}
+
+/* --- "No Claims" Message Styling --- */
+.alert-info {
+  background-color: rgba(152, 193, 217, 0.2); /* Transparent Powder Blue */
+  border: 1px solid var(--secondary-color);
+  color: var(--dark-text);
+  padding: 2rem;
+  font-size: 1.2rem;
+}
+
+/* --- Fade-in Animation --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

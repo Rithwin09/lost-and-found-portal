@@ -1,0 +1,145 @@
+/* This container centers the registration card on the page */
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: var(--light-background);
+}
+
+/* The main card, using your colors */
+.register-card {
+  width: 100%;
+  max-width: 500px; /* A bit wider for the longer form */
+  animation: fadeIn 0.5s ease-in-out;
+  background-color: var(--light-background); /* Pale Cyan, as requested */
+  border: 1px solid var(--secondary-color); /* Powder Blue border */
+  box-shadow: 0 10px 30px rgba(41, 50, 65, 0.1); /* Your Charcoal for the shadow */
+}
+
+/* The header uses your primary Steel Blue */
+.card-header {
+  background-color: var(--primary-color);
+  color: var(--light-background); /* Text is Pale Cyan for contrast */
+  border-bottom: none;
+  padding: 1.5rem;
+}
+
+/* We must be specific to override the global h3 color */
+.card-header h3 {
+  color: var(--light-background);
+}
+
+.card-body {
+  padding: 2.5rem;
+}
+
+.form-label {
+  font-weight: 500;
+  color: var(--dark-text);
+}
+
+.form-control {
+  /* No custom padding to keep the normal size */
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.25rem rgba(61, 90, 128, 0.25); /* Steel Blue glow */
+}
+
+/* Styles for the new Password Strength Meter */
+.password-rules {
+  font-size: 0.85rem;
+  color: #6c757d; /* Muted text color */
+  padding-left: 0.5rem;
+}
+
+.password-rules div {
+  transition: color 0.2s ease-in-out;
+  margin-bottom: 0.25rem;
+}
+
+.password-rules .valid {
+  color: var(--success-color); /* Green for valid rules */
+  font-weight: 500;
+}
+
+.password-rules .bi {
+  margin-right: 8px;
+  vertical-align: -0.125em; /* Better icon alignment */
+}
+
+/* This targets the main register button to use your Accent Color */
+.btn-primary {
+  background-color: var(--accent-color) !important;
+  border-color: var(--accent-color) !important;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  /* No custom padding to keep the normal size */
+}
+
+.btn-primary:hover {
+  background-color: #d95a36 !important; /* A darker shade of the Coral */
+  border-color: #d95a36 !important;
+}
+
+/* The subtle fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Styles for the Password Strength Meter --- */
+.password-rules {
+  font-size: 0.85rem;
+  color: #6c757d;
+  padding-left: 0.5rem;
+}
+
+.password-rules div {
+  transition: color 0.2s ease-in-out;
+  margin-bottom: 0.25rem;
+}
+
+.password-rules .valid {
+  color: var(--success-color);
+  font-weight: 500;
+}
+
+.password-rules .bi {
+  margin-right: 8px;
+  vertical-align: -0.125em;
+}
+
+/* --- THIS IS THE NEW ANIMATION --- */
+.password-rules-container {
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.validation-error {
+  color: var(--danger-color); /* Uses our brand's red color */
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+

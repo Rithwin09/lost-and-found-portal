@@ -1,0 +1,51 @@
+<div class="container my-5">
+  <div *ngIf="item" class="card item-detail-card">
+    <div class="row g-0">
+      <!-- Image Column -->
+      <div class="col-md-5">
+        <img [src]="'http://localhost:8080/' + item.image_url" 
+             class="item-image"
+             alt="{{ item.title }}"
+             onerror="this.src='https://placehold.co/600x400/6c757d/ffffff?text=No+Image'">
+      </div>
+      <!-- Details Column -->
+      <div class="col-md-7">
+        <div class="card-body">
+          <span class="badge fs-6 mb-2" [ngClass]="{'bg-success': item.status === 'found', 'bg-danger': item.status === 'lost', 'bg-secondary': item.status === 'resolved'}">
+            {{ item.status.toUpperCase() }}
+          </span>
+          <h2 class="card-title">{{ item.title }}</h2>
+          <p class="card-text">{{ item.description }}</p>
+          <hr>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Category:</strong> {{ item.category }}</li>
+            <li class="list-group-item"><strong>Color:</strong> {{ item.color }}</li>
+            <li class="list-group-item" *ngIf="item.brand"><strong>Brand:</strong> {{ item.brand }}</li>
+            <li class="list-group-item" *ngIf="item.unique_marks"><strong>Unique Marks:</strong> {{ item.unique_marks }}</li>
+            <li class="list-group-item" *ngIf="item.item_size"><strong>Size:</strong> {{ item.item_size }}</li>
+            <li class="list-group-item"><strong>Posted By:</strong> {{ item.user?.name || item.guest_email || 'N/A' }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Claims Section -->
+  <div *ngIf="item && item.claims && item.claims.length > 0" class="card mt-4">
+    <div class="card-header">
+      <h4>Claims on this Item</h4>
+    </div>
+    <div class="card-body">
+      <div *ngFor="let claim of item.claims" class="claim-entry">
+        <h5>Claim by: {{ claim.claimant.name }} ({{ claim.claimant.email }})</h5>
+        <p><strong>Proof Submitted:</strong> {{ claim.proof_description }}</p>
+        <p><strong>Status:</strong> <span class="badge" [ngClass]="{'bg-warning text-dark': claim.status === 'pending', 'bg-success': claim.status === 'accepted', 'bg-danger': claim.status === 'rejected'}">{{ claim.status | uppercase }}</span></p>
+        <p *ngIf="claim.rejection_reason"><strong>Rejection Reason:</strong> {{ claim.rejection_reason }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!item" class="text-center">
+    <p>Loading item details...</p>
+  </div>
+</div>

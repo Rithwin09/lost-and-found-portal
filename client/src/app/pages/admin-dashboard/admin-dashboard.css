@@ -1,0 +1,86 @@
+/* --- Main Container & Header Styling --- */
+.container {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+h1 {
+  font-weight: 700;
+}
+
+/* Style the button group in the header */
+.btn-group .btn {
+  font-weight: 500;
+}
+
+/* --- Main Reports Card Styling --- */
+.card {
+  background-color: #ffffff; /* Use white for the card to make the table pop */
+  border: none; /* Remove the default border for a cleaner look */
+}
+
+.card-header {
+  background-color: transparent;
+  border-bottom: 1px solid var(--border-color);
+  padding: 1.5rem;
+}
+
+.card-header h3 {
+  color: var(--dark-text);
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}
+
+.card-body {
+  padding: 0; /* Remove padding to let the table fill the space */
+}
+
+/* --- Table Styling --- */
+.table {
+  vertical-align: middle;
+  margin-bottom: 0; /* Remove default table margin */
+}
+
+.table thead th {
+  background-color: var(--light-background);
+  color: var(--dark-text);
+  font-weight: 600;
+  border-bottom-width: 2px;
+  border-top: none;
+  padding: 1rem 1.5rem;
+}
+
+.table tbody tr:hover {
+  background-color: rgba(61, 90, 128, 0.05); /* Subtle Steel Blue on hover */
+}
+
+.table td, .table th {
+  padding: 1rem 1.5rem;
+}
+
+/* --- Modal Popup Styling --- */
+.modal-header {
+  background-color: var(--primary-color);
+  color: var(--light-background);
+}
+
+.modal-header .modal-title {
+  color: var(--light-background);
+}
+
+.modal-header .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* --- Fade-in Animation --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

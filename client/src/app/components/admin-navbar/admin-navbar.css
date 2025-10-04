@@ -1,0 +1,55 @@
+/* General admin navbar */
+.navbar {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.95rem;
+  background: #212529 !important;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Brand */
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #f8f9fa !important;
+  transition: color 0.3s ease;
+}
+.navbar-brand:hover {
+  color: #0d6efd !important;
+}
+
+/* Nav links */
+.nav-link {
+  color: #ced4da !important;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+.nav-link:hover {
+  background-color: rgba(255,255,255,0.1);
+  color: #fff !important;
+}
+
+/* Active link highlight */
+.nav-link.active {
+  background-color: rgba(13,110,253,0.2);
+  font-weight: 500;
+  color: #0d6efd !important;
+}
+
+/* Admin logout button */
+.btn-outline-light {
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+.btn-outline-light:hover {
+  background-color: #f8f9fa;
+  color: #212529;
+  transform: translateY(-1px);
+}
+
+/* Add subtle shadow */
+.navbar {
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+}

@@ -1,0 +1,95 @@
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Admin Dashboard</h1>
+    <!-- The old navigation buttons that were here have been REMOVED. -->
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3>User-Submitted Reports</h3>
+    </div>
+    <div class="card-body">
+      <div *ngIf="reports.length > 0; else noReports" class="table-responsive">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Report ID</th>
+              <th>Date</th>
+              <th>Item Title</th>
+              <th>Reported By</th>
+              <th>Reported User</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let report of reports">
+              <td>#{{ report.id }}</td>
+              <td>{{ report.createdAt | date:'medium' }}</td>
+              <td>{{ report.item?.title || '(Item Deleted)' }}</td>
+              <td>{{ report.reporter?.name || 'N/A' }}</td>
+              <td>{{ report.reportedUser?.name || 'N/A' }}</td>
+              <td>
+                <span class="badge" [ngClass]="{'bg-warning text-dark': report.status === 'open', 'bg-info': report.status === 'reviewing', 'bg-secondary': report.status === 'closed'}">
+                  {{ report.status | uppercase }}
+                </span>
+              </td>
+              <td>
+                <button class="btn btn-primary btn-sm" (click)="openReportDetails(report)">View Details</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ng-template #noReports>
+        <p class="text-center text-muted">There are currently no user reports.</p>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL POPUP (This section is unchanged and correct) -->
+<div class="modal fade" id="reportDetailsModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" *ngIf="selectedReport">
+      <div class="modal-header">
+        <h5 class="modal-title">Report Details: #{{ selectedReport.id }}</h5>
+        <button type="button" class="btn-close" (click)="closeReportDetails()"></button>
+      </div>
+      <div class="modal-body">
+        <h6>Complaint Summary</h6>
+        <p><strong>Reason for Report:</strong> {{ selectedReport.reason }}</p>
+        <hr>
+        <h6>Users Involved</h6>
+        <ul>
+          <li><strong>Reporter:</strong> {{ selectedReport.reporter.name }} ({{ selectedReport.reporter.email }})</li>
+          <li><strong>Reported User:</strong> {{ selectedReport.reportedUser.name }} ({{ selectedReport.reportedUser.email }})</li>
+        </ul>
+        <hr>
+        <h6>Chat Log Transcript</h6>
+        <div class="chat-log-container bg-light p-2 rounded">
+          <div *ngFor="let line of chatLogLines" class="chat-log-line">
+            {{ line }}
+          </div>
+        </div>
+        <hr>
+        <h6>Admin Actions</h6>
+        <p class="text-muted small">Choose an action to resolve this report. Actions that involve a handoff will keep the chat frozen.</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <button class="btn btn-secondary" (click)="warnAndUnfreeze()">
+            Send Warning & Unfreeze Chat
+          </button>
+          <button class="btn btn-warning" (click)="moderateUser('suspended')">
+            Suspend User & Initiate Handoff
+          </button>
+          <button class="btn btn-danger" (click)="moderateUser('banned')">
+            Ban User & Initiate Handoff
+          </button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeReportDetails()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
