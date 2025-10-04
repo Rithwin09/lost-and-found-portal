@@ -42,3 +42,9 @@ testem.log
 Thumbs.db
 # Environment variables (CRITICAL FOR SECURITY)
 .env
+
+# User-uploaded content
+/server/uploads
+
+# Utility and setup scripts
+/server/create-super-admin.js
